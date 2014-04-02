@@ -1,0 +1,35 @@
+  <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://api4.mapy.cz/loader.js"></script>
+    <script type="text/javascript">Loader.load();</script>
+    <style>
+      html, body, #map {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+  </style>
+
+</head>
+
+<body>
+    <div id="map"></div>
+        <script>
+        var center = SMap.Coords.fromWGS84(14.39957857131958,50.090218101766204);
+
+        var map = new SMap(JAK.gel("map"), center, 16);
+        map.addDefaultLayer(SMap.DEF_BASE).enable();
+        map.addDefaultControls();
+
+        var layer = new SMap.Layer.Marker();
+        map.addLayer(layer);
+        layer.enable();
+
+        var options = {};
+        var marker = new SMap.Marker(center, "myMarker", options);
+        layer.addMarker(marker);
+    </script>
+</body>
+</html>

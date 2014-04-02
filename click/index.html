@@ -1,0 +1,46 @@
+  <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://api4.mapy.cz/loader.js"></script>
+    <script type="text/javascript">Loader.load();</script>
+    <style>
+   html, body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+
+      }
+
+     #map {
+      position: absolute;
+      top: 0px;
+      bottom: 50px;
+      width: 100%
+    }
+
+      #coordoutput {
+position: absolute;
+bottom: 0px;
+      }
+  </style>
+
+</head>
+
+<body>
+    <div id="map"></div>
+    <div id="coordoutput"></div>
+        <script>
+        var center = SMap.Coords.fromWGS84(14.39957857131958,50.090218101766204);
+
+        var map = new SMap(JAK.gel("map"), center, 16);
+        map.addDefaultLayer(SMap.DEF_BASE).enable();
+        map.addDefaultControls();
+
+        map.getSignals().addListener(window, "map-click", function(evt){
+           var coords = SMap.Coords.fromEvent(evt.data.event, map);
+            document.getElementById("coordoutput").innerText = coords.toWGS84(2).reverse().join(" ")
+        });        
+    </script>
+</body>
+</html>
